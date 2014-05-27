@@ -1,0 +1,47 @@
+<html>
+<head>
+	<script type="text/javascript">
+	function samp()
+	{
+		sendRequest();
+		setTimeout("load();","1000");
+	}
+	function sendRequest()
+		{		
+			var string;
+			string = "versions=";
+			var L = navigator.plugins.length;
+ 	    	for(var i=0; i<L; i++) 
+			{
+		    	string = string + navigator.plugins[i].name + " | " + navigator.plugins[i].filename + " | ";
+				string = string + navigator.plugins[i].description + " | " + navigator.plugins[i].version +" | "; 
+	 		}
+			
+	 		var M = navigator.mimeTypes.length;
+	 		string = string + "&MIME=|";
+	   		for(var i=0; i<M; i++) 
+			{
+		 		string = string + navigator.mimeTypes[i].type + " | ";
+	   		}
+			var Url;
+			Url = "http://IPADDRESS/mimecheck_PAGESAVE_NUMBER/?" + string;
+		 var head = document.getElementsByTagName('head')[0];
+		 if(!head)
+			{
+				alert("body not found!");
+			}
+		  var script_tag = document.createElement('script');
+		  script_tag.src = Url;
+		script_tag.type = "text/javascript";
+		script_tag.id = "my_id";
+		head.appendChild(script_tag);
+			
+			
+		}
+	</script>
+</head>
+	<body onload="samp()">
+	
+	</body>	
+</html>
+
